@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <title>الدفع بالعملات المشفرة</title>
+    <style>
+        body { font-family: Tahoma, Arial; direction: rtl; background: #f9f9f9; }
+        .crypto-payment {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 24px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px #eee;
+        }
+        .crypto-payment h2 { margin-bottom: 16px; }
+        .crypto-icons img { width: 36px; margin-left: 8px; }
+        label { display: block; margin-top: 12px; }
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .qr { text-align: center; margin: 16px 0; }
+        .pay-btn {
+            background: #34a853;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .instructions {
+            background: #f1f8e9;
+            padding: 8px;
+            border-radius: 4px;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="crypto-payment">
+        <h2>الدفع بالعملات المشفرة</h2>
+        <div class="crypto-icons">
+            <img src="usdt.png" alt="Tether" />
+            <img src="eth.png" alt="Ethereum" />
+            <img src="trx.png" alt="Tron" />
+        </div>
+        <form>
+            <label for="currency">اختر العملة:</label>
+            <select id="currency" name="currency" onchange="updateWalletInfo()">
+                <option value="USDT">Tether (USDT)</option>
+                <option value="ETH">Ethereum (ETH)</option>
+                <option value="TRX">Tron (TRX)</option>
+            </select>
+
+            <label for="amount">المبلغ المطلوب:</label>
+            <input type="text" id="amount" value="50 USDT" readonly />
+
+            <label for="wallet">عنوان المحفظة:</label>
+            <input type="text" id="wallet" value="TUMcDpT9YKefVxvH1aCpmsrpo8vHS1Bmxv" readonly />
+
+            <div class="qr">
+                <img id="qrImage" src="usdt_qr.png" alt="QR Code" width="120" />
+            </div>
+
+            <button type="submit" class="pay-btn">تم الدفع</button>
+        </form>
+        <div class="instructions">
+            <ul>
+                <li>يرجى إرسال المبلغ المحدد إلى عنوان المحفظة أعلاه.</li>
+                <li>استخدم رمز QR لتسريع العملية.</li>
+                <li>صلاحية الفاتورة: 20 دقيقة.</li>
+                <li>سيتم تأكيد الدفع تلقائيًا خلال دقائق.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateWalletInfo() {
+            const currency = document.getElementById("currency").value;
+            const walletInput = document.getElementById("wallet");
+            const amountInput = document.getElementById("amount");
+            const qrImage = document.getElementById("qrImage");
+
+            if (currency === "ETH") {
+                walletInput.value = "0xac6f679c432e9cf20a2805ee737a3468b03d6e64";
+                amountInput.value = "50 ETH";
+                qrImage.src = "eth_qr.png";
+            } else if (currency === "USDT") {
+                walletInput.value = "TUMcDpT9YKefVxvH1aCpmsrpo8vHS1Bmxv";
+                amountInput.value = "50 USDT";
+                qrImage.src = "usdt_qr.png";
+            } else if (currency === "TRX") {
+                walletInput.value = "TUMcDpT9YKefVxvH1aCpmsrpo8vHS1Bmxv";
+                amountInput.value = "50 TRX";
+                qrImage.src = "trx_qr.png";
+            }
+        }
+    </script>
+
+<div class="contact-box" style="margin-top: 30px; padding: 15px; background-color: #2b2d3a; border-radius: 12px; text-align: center;">
+  <h3 style="margin-bottom: 10px;">📞 تواصل معنا</h3>
+  <div style="display: flex; justify-content: center; gap: 30px; font-size: 1.8rem;">
+    <a href="https://t.me/a_l_s_g_r_bot" target="_blank" title="تليجرام" style="color: #24A1DE;">
+      <i class="fab fa-telegram"></i>
+    </a>
+    <a href="https://www.instagram.com/al_s_g_r?igsh=NnN4cjVkYXU2NTc=" target="_blank" title="انستقرام" style="color: #E1306C;">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

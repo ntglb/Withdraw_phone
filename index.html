@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>𓆩𓅓𝑺𝑨𝑸𝑬𝑹𓅓𓆪 | تتبع الهدف</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      margin: 0;
+      background-color: #1e1f29;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+      padding: 20px;
+    }
+    h1 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+    select, input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #2b2d3a;
+      color: white;
+    }
+    .phone-input {
+      display: flex;
+    }
+    .prefix {
+      background-color: #2b2d3a;
+      color: #00d084;
+      padding: 12px;
+      border-radius: 8px 0 0 8px;
+      min-width: 80px;
+      text-align: center;
+    }
+    .phone-field {
+      flex: 1;
+      border-radius: 0 8px 8px 0;
+      border: none;
+      background-color: #2b2d3a;
+      color: white;
+      padding: 12px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      background-color: #00d084;
+      border: none;
+      border-radius: 8px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:disabled {
+      background-color: #444;
+      cursor: not-allowed;
+    }
+    .error {
+      color: #ff5252;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>حدد الدولة وأدخل رقم الهاتف</h1>
+    <select id="country" onchange="updatePrefix()">
+      <option value="sa" data-code="966" data-length="9">🇸🇦 السعودية (+966)</option>
+      <option value="eg" data-code="20" data-length="10">🇪🇬 مصر (+20)</option>
+      <option value="ye" data-code="967" data-length="9">🇾🇪 اليمن (+967)</option>
+      <option value="ma" data-code="212" data-length="9">🇲🇦 المغرب (+212)</option>
+      <option value="dz" data-code="213" data-length="9">🇩🇿 الجزائر (+213)</option>
+      <option value="sd" data-code="249" data-length="9">🇸🇩 السودان (+249)</option>
+      <option value="jo" data-code="962" data-length="9">🇯🇴 الأردن (+962)</option>
+      <option value="iq" data-code="964" data-length="10">🇮🇶 العراق (+964)</option>
+      <option value="sy" data-code="963" data-length="9">🇸🇾 سوريا (+963)</option>
+      <option value="lb" data-code="961" data-length="8">🇱🇧 لبنان (+961)</option>
+    </select>
+
+    <div class="phone-input">
+      <div class="prefix" id="prefix">+966</div>
+      <input type="tel" id="phone" class="phone-field" placeholder="أدخل رقم الهاتف بدون المفتاح" oninput="validatePhone()">
+    </div>
+
+    <div id="error" class="error" style="display:none;">⚠️ تأكد من صحة الرقم</div>
+
+    <button id="launchBtn" onclick="startTracking()" disabled>يطلق</button>
+  </div>
+
+  <script>
+    const phone = document.getElementById("phone");
+    const prefix = document.getElementById("prefix");
+    const errorMsg = document.getElementById("error");
+    const launchBtn = document.getElementById("launchBtn");
+    const country = document.getElementById("country");
+
+    function updatePrefix() {
+      const selected = country.options[country.selectedIndex];
+      prefix.innerText = "+" + selected.dataset.code;
+      validatePhone();
+    }
+
+    function validatePhone() {
+      const selected = country.options[country.selectedIndex];
+      const expectedLength = parseInt(selected.dataset.length);
+      const value = phone.value.trim();
+
+      if (value.length === expectedLength && /^\d+$/.test(value)) {
+        errorMsg.style.display = "none";
+        launchBtn.disabled = false;
+      } else {
+        errorMsg.style.display = "block";
+        launchBtn.disabled = true;
+      }
+    }
+
+    function startTracking() {
+      
+      const selected = country.options[country.selectedIndex];
+      const code = selected.dataset.code;
+      const cname = selected.textContent.split(" ")[0];
+      localStorage.setItem("fullNumber", "+" + code + phone.value.trim());
+      localStorage.setItem("countryName", cname);
+      window.location.href = "result.html";
+    
+    }
+
+    // تعيين الدولة الافتراضية
+    updatePrefix();
+  </script>
+</body>
+</html>

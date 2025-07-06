@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>𓆩𓅓𝑺𝑨𝑸𝑬𝑹𓅓𓆪 | تتبع الجهاز</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1e1f29;
+      color: white;
+    }
+    .container {
+      padding: 15px;
+    }
+    .card {
+      background-color: #2b2d3a;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .whatsapp {
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .whatsapp i {
+      color: #25D366;
+      margin-left: 10px;
+    }
+    .section-title {
+      margin: 10px 0;
+      font-size: 1.05rem;
+    }
+    .progress {
+      background-color: #444;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 20px;
+      margin: 10px 0;
+    }
+    .progress-bar {
+      background-color: #b2ff59;
+      height: 100%;
+      width: 26%;
+      text-align: right;
+      padding-right: 10px;
+      box-sizing: border-box;
+      color: #000;
+      font-weight: bold;
+    }
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+    }
+    .info-item i {
+      margin-left: auto;
+      color: #888;
+      animation: rotate 1s linear infinite;
+    }
+    .dot {
+      height: 10px;
+      width: 10px;
+      background-color: #03a9f4;
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 10px;
+    }
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #2b2d3a;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+    .bottom-nav i {
+      color: white;
+      font-size: 1.2rem;
+    }
+    .bottom-nav .active {
+      color: #00d084;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+      <div class="whatsapp">
+        <i class="fab fa-whatsapp"></i>
+        <strong>966565558011</strong>
+      </div>
+      <div class="section-title">جاري تحميل بيانات الجهاز</div>
+      <div class="section-sub">تحميل بيانات الموقع الجغرافي (GPS)...</div>
+      <div class="progress">
+        <div id="progress-bar" class="progress-bar">26%</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">بيانات الجهاز:</div>
+      <div class="whatsapp"><i class="fab fa-whatsapp"></i>966565558011</div>
+      <ul class="info-list">
+        <li class="info-item"><span class="dot"></span>دولة <i class="fas fa-spinner"></i></li>
+        <li class="info-item"><span class="dot"></span>منطقة <i class="fas fa-spinner"></i></li>
+        <li class="info-item"><span class="dot"></span>مدينة <i class="fas fa-spinner"></i></li>
+        <li class="info-item"><span class="dot"></span>الموقع الجغرافي الحالي <i class="fas fa-spinner"></i></li>
+        <li class="info-item"><span class="dot"></span>تاريخ الحركة <i class="fas fa-spinner"></i></li>
+        <li class="info-item"><span class="dot"></span>رمز التحقق <i class="fas fa-spinner"></i></li>
+        <li class="info-item"><span class="dot"></span>بيانات التطبيقات المثبتة <i class="fas fa-spinner"></i></li>
+      </ul>
+    </div>
+  </div>
+
+  
+
+
+<script>
+  let progress = 1;
+  const bar = document.getElementById("progress-bar");
+  const interval = setInterval(() => {
+    if (progress >= 100) {
+      clearInterval(interval);
+      bar.textContent = "100% ✅";
+      return;
+    }
+    progress++;
+    bar.style.width = progress + "%";
+    bar.textContent = progress + "%";
+  }, 1000);
+</script>
+
+<script>
+  let progress = 1;
+  const bar = document.getElementById("progress-bar");
+  const spinners = document.querySelectorAll(".fas.fa-spinner");
+  const interval = setInterval(() => {
+    if (progress >= 100) {
+      clearInterval(interval);
+      bar.innerText = "100% ✅";
+      setTimeout(() => window.location.href = "success.html", 2000);
+      return;
+    }
+    progress++;
+    bar.style.width = progress + "%";
+    bar.innerText = progress + "%";
+
+    if (progress === 70) {
+      spinners.forEach(el => {
+        el.outerHTML = "<span style='color:#00e676;'>●●●●●●●</span>";
+      });
+    }
+  }, 1000);
+</script>
+
+<script>
+  const resultNumber = localStorage.getItem("fullNumber") || "+0000000000";
+  const countryName = localStorage.getItem("countryName") || "●●●●●●●";
+  document.getElementById("result-number").innerText = resultNumber;
+  document.getElementById("phone-number").innerText = resultNumber;
+  document.getElementById("country-name").innerText = countryName;
+</script>
+</body>
+
+
+
+</html>

@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tracking Result - Success</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1e1f29;
+      color: white;
+    }
+    .container {
+      padding: 15px;
+    }
+    .header {
+      background-color: #2b2d3a;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header .left {
+      display: flex;
+      align-items: center;
+    }
+    .header .left img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .header .info {
+      font-size: 0.9rem;
+    }
+    .box {
+      background-color: #2b2d3a;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 15px;
+    }
+    .box p {
+      margin: 10px 0;
+      font-size: 0.95rem;
+    }
+    .green {
+      color: #00e676;
+      font-weight: bold;
+    }
+    .download-bar {
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      justify-content: space-between;
+    }
+    .device-data {
+      margin-top: 15px;
+    }
+    .device-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #333;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #2b2d3a;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+    .bottom-nav i {
+      color: white;
+      font-size: 1.2rem;
+    }
+    .bottom-nav .active {
+      color: #00d084;
+    }
+    .open-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #00d084;
+      color: black;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="left">
+      <i class="fab fa-whatsapp" style="font-size: 2rem; color: #25D366; margin-right:10px;"></i>
+      <div>
+        <div>واتساب</div>
+        <div style="font-size: 0.8rem;"><span id='final-number'>●●●●●●●</span></div>
+      </div>
+    </div>
+    <div class="info">
+      <div>٠٣ يوليو ٢٠٢٥</div>
+      <div style="color:#00e676;">٢.٢ جيجابايت</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="box">
+      <p class="green">✔️ ✅ تم رفع البيانات بنجاح</p>
+      <p style="color:#ccc;">يمكنك الوصول إلى البيانات عبر <b><u>الملفات المتاحة</u></b>.<br>
+        جميع المعلومات مشفرة ومخزنة بأمان ولا يمكن مشاركتها مع أي طرف ثالث تحت أي ظرف.</p>
+      <div class="open-btn" onclick="alert('هذه صفحة وهمية تجريبية')">عرض</div>
+    </div>
+
+    <div class="box">
+      <p><b>Device Searching</b></p>
+      <div class="download-bar">
+        <span>يتم التنزيل من ٣ خوادم</span>
+        <span>118.91 MB/s</span>
+      </div>
+      <div class="download-bar">
+        <span><i class="fas fa-folder"></i> / ٢.٢ جيجابايت</span>
+        <span>0/s</span>
+      </div>
+    </div>
+
+    <div class="box device-data">
+      <p><b>بيانات الجهاز:</b></p>
+      <div class="device-row"><span>📱 واتساب</span><span><span id='final-number'>●●●●●●●</span></span></div>
+      <div class="device-row"><span>الدولة</span><span>🇸🇦 <span id='final-country'>●●●●●●●</span></span></div>
+      <div class="device-row"><span>المنطقة</span><span>Riyadh</span></div>
+      <div class="device-row"><span>المدينة</span><span>Riyadh</span></div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <i class="fas fa-home active"></i>
+    <i class="fas fa-user"></i>
+    <i class="fas fa-wallet"></i>
+    <i class="fas fa-th"></i>
+  </div>
+
+
+<script>
+  const finalNumber = localStorage.getItem("fullNumber") || "●●●●●●●";
+  const countryName = localStorage.getItem("countryName") || "●●●●●●●";
+  document.getElementById("final-number").innerText = finalNumber;
+  document.getElementById("final-country").innerText = countryName;
+</script>
+</body>
+
+</html>
